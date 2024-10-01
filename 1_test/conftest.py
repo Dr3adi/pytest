@@ -1,4 +1,5 @@
 import pytest
+import requests
 
 
 @pytest.fixture
@@ -7,5 +8,12 @@ def len_list(request):
 
     def finalizer():
         print("\nfinalizer")
+
     request.addfinalizer(finalizer)
     return s
+
+
+@pytest.fixture
+def get_url_dog_api():
+    r = requests.get('https://dog.ceo/api/breeds/image/random')
+    return r
