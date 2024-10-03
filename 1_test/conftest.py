@@ -15,5 +15,5 @@ def len_list(request):
 
 @pytest.fixture
 def get_url_dog_api():
-    r = requests.get('https://dog.ceo/api/breeds/image/random')
+    r = 'https://dog.ceo'
     return r
