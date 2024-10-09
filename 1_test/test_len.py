@@ -42,3 +42,26 @@ def test_city_filter():
     assert len(data) == 3
     for i in data:
         assert i['city'] == 'San Diego'
+
+
+@pytest.mark.parametrize('posts_list', [1, 5, 10])
+def test_typicode_posts(get_typicode_api, posts_list):
+    url = f'{get_typicode_api}/posts/{posts_list}'
+    r = requests.get(url)
+    assert r.status_code == 200
+    data = r.json()
+    assert data['id'] == posts_list
+
+
+# https://jsonplaceholder.typicode.com/
+def test_typicode_post(get_typicode_api):
+    url = f'{get_typicode_api}/posts'
+    payload = {
+        'title': 'foo',
+        'body': 'bar',
+        'userId': 1
+    }
+    r = requests.post(url, payload)
+    assert r.status_code == 201
+    data = r.json()
+    assert data['title'] == 'foo' and data['body'] == 'bar' and data['userId'] == '1' and 'id' in data

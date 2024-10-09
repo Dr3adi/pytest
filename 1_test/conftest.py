@@ -17,3 +17,9 @@ def len_list(request):
 def get_url_dog_api():
     r = 'https://dog.ceo'
     return r
+
+
+@pytest.fixture()
+def get_typicode_api():
+    r = 'https://jsonplaceholder.typicode.com'
+    return r
