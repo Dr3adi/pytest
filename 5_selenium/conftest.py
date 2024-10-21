@@ -1,7 +1,6 @@
 import pytest
 from selenium import webdriver
 
-
 @pytest.fixture()
 def driver(request):
     browser = webdriver.Chrome()
@@ -21,3 +20,16 @@ def pytest_addoption(parser):
 @pytest.fixture
 def brw_param(request):
     return request.config.getoption("--brw")
+
+
+@pytest.fixture(params=['chrome', 'edge'])
+def parametrize_browser(request):
+    browser_param = request.param
+    if browser_param == 'chrome':
+        driver = webdriver.Chrome()
+    elif browser_param == 'edge':
+        driver = webdriver.Edge()
+    driver.implicitly_wait(20)
+    driver.get('https://yandex.by/')
+    request.addfinalizer(driver.quit)
+    return driver
