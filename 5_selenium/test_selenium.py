@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from time import sleep
 
 
 def test_selenium_example(driver):
@@ -26,3 +27,15 @@ def test_brw_param(brw_param):
 
 def test_parametrize_browser(parametrize_browser):
     parametrize_browser.find_element(By.CLASS_NAME, 'alice-fab').click()
+
+
+def test_ya_search():
+    ya = webdriver.Edge()
+    ya.implicitly_wait(20)
+    ya.get('https://yandex.by/')
+    ya_search = ya.find_element(By.ID, 'text')
+    ya_search.send_keys('test')
+    sleep(3)
+    ya_search = ya.find_element(By.CLASS_NAME, 'services-suggest__list')
+    ya_search.find_element(By.LINK_TEXT, 'Игры').click()
+    sleep(3)
