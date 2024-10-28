@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
+from selenium.webdriver.support.select import Select
 
 
 def test_selenium_example(driver):
@@ -39,3 +40,13 @@ def test_ya_search():
     ya_search = ya.find_element(By.CLASS_NAME, 'services-suggest__list')
     ya_search.find_element(By.LINK_TEXT, 'Игры').click()
     sleep(3)
+
+
+# работа с селектами
+def test_ab_onliner(driver):
+    driver.implicitly_wait(20)
+    driver.get('https://ab.onliner.by/')
+    s1 = Select(driver.find_element(By.XPATH,
+                                    '//*[@id="container"]/div/div/div/div/div/div[2]/div/div/div[3]/div/div[2]/div[2]/div[2]/div[5]/div/div/div/div/div[2]/div/div/div[1]/div/select'))
+    s1.select_by_index(5)
+    sleep(5)
