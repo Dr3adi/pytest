@@ -35,11 +35,13 @@ def test_ya_search():
     ya.implicitly_wait(20)
     ya.get('https://yandex.by/')
     ya_search = ya.find_element(By.ID, 'text')
+    
     # получение css проперти
     css_property = ya_search.value_of_css_property('color')
     print(css_property)
     css_property = ya_search.value_of_css_property('display')
     print(css_property)
+
     # ввод текста в строку
     ya_search.send_keys('test')
     sleep(3)
