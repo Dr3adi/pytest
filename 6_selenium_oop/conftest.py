@@ -19,7 +19,7 @@ def browser(request):
     elif open_browser == 'edge':
         driver = webdriver.Edge()
     else:
-        raise ValueError(f'Browser {browser} is not supported')
+        raise ValueError(f'Browser {open_browser} is not supported')
     driver.maximize_window()
     driver.implicitly_wait(20)
     request.addfinalizer(driver.quit)
