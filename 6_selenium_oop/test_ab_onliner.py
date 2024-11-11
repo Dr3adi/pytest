@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
-from utils import clear_input
+from utils import clear_input, wait_element
 from selenium.webdriver.support.select import Select
 from locators import CatalogPage
 
@@ -15,3 +15,8 @@ def test_ab_onliner_page(browser, base_url):
     element.send_keys('samsung')
     sleep(5)
     clear_input(element)
+
+
+def test_find_input(browser, base_url):
+    browser.get(base_url)
+    element = wait_element(browser, *CatalogPage.fast_search__input)
