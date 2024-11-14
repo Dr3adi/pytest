@@ -52,9 +52,40 @@ def test_ya_search():
 
 # работа с селектами
 def test_ab_onliner(driver):
-    driver.implicitly_wait(20)
     driver.get('https://ab.onliner.by/')
     s1 = Select(driver.find_element(By.XPATH,
                                     '//*[@id="container"]/div/div/div/div/div/div[2]/div/div/div[3]/div/div[2]/div[2]/div[2]/div[5]/div/div/div/div/div[2]/div/div/div[1]/div/select'))
     s1.select_by_index(5)
+    sleep(5)
+
+
+def test_alert(driver):
+    driver.get('https://ab.onliner.by/')
+    driver.execute_script('alert(123);')
+    alert = driver.switch_to.alert
+    sleep(5)
+    alert_text = alert.text
+    print(alert_text)
+    alert.accept()
+
+    driver.execute_script("prompt('some text');")
+    prompt = driver.switch_to.alert
+    prompt.send_keys('my text')
+    sleep(5)
+    prompt.dismiss()
+
+    driver.execute_script("confirm('Are you ok')")
+    confirm = driver.switch_to.alert
+    print(confirm.text)
+    sleep(5)
+    confirm.accept()
+
+
+def test_new_window(driver):
+    driver.get('https://ab.onliner.by/')
+    driver.execute_script('window.open();')
+    windows = driver.window_handles
+    print(windows)
+    driver.switch_to.window(windows[1])
+    driver.get('https://habr.com/ru/articles/669880/')
     sleep(5)

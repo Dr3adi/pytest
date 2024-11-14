@@ -4,6 +4,7 @@ from selenium import webdriver
 @pytest.fixture()
 def driver(request):
     browser = webdriver.Chrome()
+    browser.implicitly_wait(10)
     # открытие браузера на весь экран
     browser.maximize_window()
     request.addfinalizer(browser.quit)
