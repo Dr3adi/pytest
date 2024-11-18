@@ -45,6 +45,7 @@ lib64/
 parts/
 sdist/
 var/
+allure-results/
 wheels/
 *.egg-info/
 .installed.cfg
