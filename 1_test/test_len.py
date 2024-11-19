@@ -1,8 +1,11 @@
+import allure
 import pytest
 import requests
 import json
 
 
+@allure.feature('Проверка длины списка')
+@allure.story('Длина 8')
 def test_len_1(len_list):
     assert len(len_list) == 8
 
