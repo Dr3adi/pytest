@@ -45,7 +45,7 @@ lib64/
 parts/
 sdist/
 var/
-allure-results/
+allure-result/
 allure-reports/
 wheels/
 *.egg-info/

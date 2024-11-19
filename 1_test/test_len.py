@@ -4,6 +4,7 @@ import requests
 import json
 
 
+@allure.title('Тест количества элементов в списке')
 @allure.feature('Проверка длины списка')
 @allure.story('Длина 8')
 def test_len_1(len_list):
@@ -13,9 +14,11 @@ def test_len_1(len_list):
 def test_dog_status(get_url_dog_api):
     new_url = get_url_dog_api + '/api/breeds/image/random'
     url_api = requests.get(new_url)
-    assert url_api.status_code == 200
+    with allure.step('Статус код 200'):
+        assert url_api.status_code == 200
     data = url_api.json()
-    assert data['status'] == 'success'
+    with allure.step('Проверка респонса status = success'):
+        assert data['status'] == 'success'
 
 
 @pytest.mark.parametrize("count_images", [2, 3, 4, 5])
